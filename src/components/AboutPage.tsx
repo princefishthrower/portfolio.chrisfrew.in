@@ -25,9 +25,6 @@ const AboutPage: React.FC = () => {
           <h2 className="text-center mb-4 text-2xl font-semibold text-gray-900">
             About
           </h2>
-          <p className="font-display text-center text-gray-600">
-            About the artist.
-          </p>
         </section>
 
 
@@ -41,7 +38,7 @@ const AboutPage: React.FC = () => {
           </p>
 
           <p className="font-display mb-8 text-gray-600">
-            While his posters are currently printed by external companies, Chris hopes one day to operate his own personal print studio.
+            While his prints are currently created by external firms, Chris hopes one day to operate his own personal print studio.
           </p>
         </section>
       </div>
