@@ -4,9 +4,13 @@ import Layout from '../components/Layout';
 import { graphql, useStaticQuery } from 'gatsby';
 import SEO from '../components/SEO';
 
+const CHRISTMAS_2025_METADATA = [
+  { id: 'coldSolitudeChristmas', filename: 'cold-solitude-christmas.png', caption: 'Cold Solitude - Christmas', description: 'A special Christmas edition of the Cold Solitude print, featuring hundreds of retro christmas lights lining the cabin and fence outside - as well as a surprise Christmas tree in the mountain behind.', objectPosition: 'bottom' },
+  { id: 'californiaChristmas', filename: 'california-christmas.png', caption: 'California Christmas', description: 'A single light burns in a house somewhere the suburbs of California. No snow, but decorated with bright Christmas lights and a warm glow from within.', objectPosition: 'bottom', aspectRatio: '16/10' }
+];
+
 const SWISSARTEXPO_METADATA = [
   { id: 'saentisSupergreenAurora', aspectRatio: '4/3', filename: 'saentis-supergreen-aurora.png', caption: 'Säntis Supergreen - Aurora', description: 'Second print from the Säntis Super series with bright and feathered aurora.' },
-
   { id: 'mannheimerFirstColor', filename: 'mannheimer-first-color.png', caption: 'Late Nights at Mannheimer Hütte', description: 'The first, and night-focused colorway print in the Mannheimer series.' },
   { id: 'singleStone', filename: 'single-stone.png', caption: 'Single Stone', description: 'A highly detailed vector print with lots of stippling - and only 4 colors.' },
   { id: 'coldForest', aspectRatio: '2/1', filename: 'COLD FOREST.jpg', caption: 'COLD FOREST', description: 'Another large panorama taken about a half hour before the fated COLD MOON shot. Up in Lech I knew there was snow, but not that it was so fresh and still clinging to everything. I stumbled upon this quiet field and couldnt help but admire the multi colored sky trying to figure itself out if it was blue hour or golden hour. Another monster shot, this one is 10310 x 5091, or 52 megapixels. Still have one or two more shots in the bag from this outing!' },
@@ -185,11 +189,11 @@ const ImageModal = ({ isOpen, onClose, image, gatsbyImage }: any) => {
       {/* Mobile layout - stacked vertically */}
       <div 
         className="flex flex-col items-center justify-center w-full h-full md:hidden"
-        onClick={e => e.stopPropagation()}
       >
         <div className="flex-1 flex items-center justify-center w-full min-h-0">
           <div
             className="relative flex items-center justify-center"
+            onClick={e => e.stopPropagation()}
             style={{
               padding: '8px',
               height: '100vh',
@@ -215,11 +219,11 @@ const ImageModal = ({ isOpen, onClose, image, gatsbyImage }: any) => {
       {/* Desktop layout - centered image with side panel */}
       <div 
         className="hidden md:flex items-center justify-center w-full h-full relative"
-        onClick={e => e.stopPropagation()}
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="relative flex items-center justify-center"
+            onClick={e => e.stopPropagation()}
             style={{
               padding: '8px',
               height: '100vh',
@@ -306,7 +310,7 @@ export default function HomeIndex() {
     return (
       <div
         key={item.id}
-        className="group flex flex-col w-full max-w-md mx-auto cursor-pointer"
+        className="group flex flex-col w-full sm:w-1/2 lg:w-1/3 max-w-md mx-auto cursor-pointer"
         onClick={() => setSelectedImage({ item, gatsbyImage })}
         onContextMenu={(e) => e.preventDefault()}
       >
@@ -341,6 +345,17 @@ export default function HomeIndex() {
     <Layout>
       <div className="min-h-screen bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <section id="christmas-2025" className="mb-20">
+            <h2 className="text-center mb-4 text-2xl font-semibold text-gray-900">
+              Christmas 2025 Prints
+            </h2>
+            <p className="font-display text-center mb-8 text-gray-600">
+              Inspired by winter scenes from Austria and beyond, these prints capture the magic of the holiday season.
+            </p>
+            <div className="flex flex-wrap justify-center gap-8">
+              {CHRISTMAS_2025_METADATA.map(print => renderImage(print, "3/4"))}
+            </div>
+          </section>
           <section id="swiss-art-expo" className="mb-20">
             <h2 className="text-center mb-4 text-2xl font-semibold text-gray-900">
               SWISSARTEXPO Featured Works
@@ -348,7 +363,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               The following five works, each a single signed 1/1 edition, will be on display from August 20th to 24th in Zürich Main Station at the SWISSARTEXPO.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {SWISSARTEXPO_METADATA.map(print => renderImage(print, "3/4"))}
             </div>
           </section>
@@ -362,7 +377,7 @@ export default function HomeIndex() {
             <br/>
               Many of these are vector graphics and can be printed to staggering sizes without any loss of quality.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {PRINTS_METADATA.map(print => renderImage(print, "3/4"))}
             </div>
           </section>
@@ -374,7 +389,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               A collection of prints focusing on the elemental forms of stone, pine, grass, and snow in the Alps.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {SINGLE_STONES_METADATA.map(photo => renderImage(photo, "2/1"))}
             </div>
           </section>
@@ -386,7 +401,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               My blue hour photography from the Alps, U.S., and beyond.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {PHOTOGRAPHY_METADATA.map(photo => renderImage(photo, "4/3"))}
             </div>
           </section>
@@ -398,7 +413,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               A series of photos capturing the summer solstice celebration in Austria.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {SONNWENDFEIER_SERIES_METADATA.map(photo => renderImage(photo, "4/3"))}
             </div>
           </section>
@@ -410,7 +425,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               A collection of photos from Bezau, capturing the village as it transitions from dusk to night.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {BEZAU_SERIES_METADATA.map(photo => renderImage(photo, "4/3"))}
             </div>
           </section>
@@ -422,7 +437,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               A series of night shots featuring my trekking bike, exploring lesser known corners of the Alps.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {NIGHT_RIDER_SERIES_METADATA.map(photo => renderImage(photo, "4/3"))}
             </div>
           </section>
@@ -434,7 +449,7 @@ export default function HomeIndex() {
             <p className="font-display text-center mb-8 text-gray-600">
               A series of photos from Gargellen, capturing the serene beauty of the Montafon valley.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {GARGELLEN_SERIES_METADATA.map(photo => renderImage(photo, "4/3"))}
             </div>
           </section>
@@ -449,7 +464,7 @@ export default function HomeIndex() {
               A collection of high resolution colorized panoramas from the Alps
               focusing on color, form, and texture of stone and snow.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
+            <div className="flex flex-wrap justify-center gap-8">
               {STONE_X_SNOW_PANORAMAS_METADATA.map(photo => renderImage(photo, "2/1", 'pano'))}
             </div>
           </section>
